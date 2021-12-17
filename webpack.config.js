@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CopyPlugin = require("copy-webpack-plugin");
 
 module.exports = {
-  entry: "./src/index.js",
+  entry: "./src/index.tsx",
   devtool: 'eval-cheap-source-map',
   output: {
     filename: "[name].js",
@@ -12,7 +12,7 @@ module.exports = {
   },
   module: {
     rules: [
-      { test: /\.(js|jsx|ts)$/, exclude: /node_modules/, use: ["babel-loader"] },
+      { test: /\.(js|jsx|ts|tsx)$/, exclude: /node_modules/, use: ["babel-loader"] },
       { test: /\.(css|scss)$/, use: ["style-loader", "css-loader", "sass-loader"] },
       { test: /\.html$/, use: "html-loader" },
       { test: /\.(glsl)$/, use: "webpack-glsl-loader" },
@@ -23,8 +23,11 @@ module.exports = {
     new webpack.ProvidePlugin({process: 'process/browser'}),
     new CopyPlugin({
       patterns: [
-        { from: "./src/static", to: "static" },
+        { from: "./src/_static_", to: "_static_" },
       ],
-    }),    
+    }),
   ],
+  resolve: {
+    extensions: ['.js', '.jsx', '.ts', '.tsx', '.glsl', '.css', '.scss'],
+  },  
 };
