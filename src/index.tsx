@@ -1,4 +1,4 @@
 import { render } from 'react-dom';
-import DemoPage from './DemoPage';
+import {DemoPage} from './DemoPage';
 
-render(<DemoPage />, document.getElementById("base"));
+render(<DemoPage message="why that way isn't work fine ?"/>, document.getElementById("base"));
